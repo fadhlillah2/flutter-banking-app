@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_banking_app/json/transactions.dart';
 import 'package:flutter_banking_app/repo/repository.dart';
 import 'package:flutter_banking_app/utils/layouts.dart';
-import 'package:flutter_banking_app/utils/styles.dart';
 import 'package:flutter_banking_app/widgets/my_app_bar.dart';
 import 'package:gap/gap.dart';
 import 'dart:math' as math;
@@ -245,13 +244,13 @@ class _StatsState extends State<Stats> {
         show: false,
         drawVerticalLine: false,
         getDrawingHorizontalLine: (value) {
-          return FlLine(
+          return const FlLine(
             color: Colors.transparent,
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
-          return FlLine(
+          return const FlLine(
             //color: Repository.selectedItemColor(context),
             strokeWidth: 1,
           );
@@ -259,8 +258,8 @@ class _StatsState extends State<Stats> {
       ),
       titlesData: FlTitlesData(
         show: true,
-        rightTitles: SideTitles(showTitles: false),
-        topTitles: SideTitles(showTitles: false),
+        rightTitles: const SideTitles(showTitles: false),
+        topTitles: const SideTitles(showTitles: false),
         bottomTitles: SideTitles(
           showTitles: true,
           reservedSize: 40,
@@ -321,19 +320,19 @@ class _StatsState extends State<Stats> {
       lineBarsData: [
         LineChartBarData(
           spots: [
-            FlSpot(0, 3),
-            FlSpot(1.5, 3),
-            FlSpot(3.5, 5),
-            FlSpot(5, 3),
-            FlSpot(6.5, 4),
-            FlSpot(8, 2.8),
-            FlSpot(9, 3),
+            const FlSpot(0, 3),
+            const FlSpot(1.5, 3),
+            const FlSpot(3.5, 5),
+            const FlSpot(5, 3),
+            const FlSpot(6.5, 4),
+            const FlSpot(8, 2.8),
+            const FlSpot(9, 3),
           ],
           isCurved: true,
           colors: gradientColors,
           barWidth: 2.5,
           isStrokeCapRound: true,
-          dotData: FlDotData(
+          dotData: const FlDotData(
             show: false,
           ),
           belowBarData: BarAreaData(

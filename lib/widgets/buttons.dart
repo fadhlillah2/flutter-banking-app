@@ -9,7 +9,7 @@ Widget elevatedButton({required BuildContext context, required VoidCallback call
       child: ElevatedButton(
         child: Text(text),
         style: ElevatedButton.styleFrom(
-            primary: color ?? Styles.primaryColor,
+            backgroundColor: color ?? Styles.primaryColor,
             elevation: 0,
             //shadowColor: Colors.indigoAccent,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -25,12 +25,11 @@ Widget outlinedButton({required BuildContext context, required VoidCallback call
     onPressed: callback,
     child: child,
     style: OutlinedButton.styleFrom(
-      backgroundColor: Colors.transparent,
-      primary: Styles.primaryColor,
+      foregroundColor: Styles.primaryColor, backgroundColor: Colors.transparent,
       elevation: 0,
       side: BorderSide(color: Colors.grey.shade400, width: 1),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(getProportionateScreenWidth(10))),
-      padding: EdgeInsets.symmetric(vertical: 13, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
     ),
   );
 }
