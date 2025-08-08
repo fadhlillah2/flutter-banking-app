@@ -258,55 +258,87 @@ class _StatsState extends State<Stats> {
       ),
       titlesData: FlTitlesData(
         show: true,
-        rightTitles: const SideTitles(showTitles: false),
-        topTitles: const SideTitles(showTitles: false),
-        bottomTitles: SideTitles(
-          showTitles: true,
-          reservedSize: 40,
-          interval: 1.1,
-          getTextStyles: (context, value) => const TextStyle(color: Colors.grey, fontSize: 17),
-          getTitles: (value) {
-            switch (value.toInt()) {
-              case 1:
-                return 'S';
-              case 2:
-                return 'M';
-              case 3:
-                return 'T';
-              case 4:
-                return 'W';
-              case 5:
-                return 'T';
-              case 6:
-                return 'F';
-              case 7:
-                return 'S';
-            }
-            return '';
-          },
-          margin: 15,
+        rightTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
         ),
-        leftTitles: SideTitles(
-          showTitles: false,
-          interval: 1,
-          getTextStyles: (context, value) => const TextStyle(
-            color: Color(0xff67727d),
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
+        topTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 40,
+            interval: 1.1,
+            getTitlesWidget: (double value, TitleMeta meta) {
+              const style = TextStyle(color: Colors.grey, fontSize: 17);
+              Widget text;
+              switch (value.toInt()) {
+                case 1:
+                  text = const Text('S', style: style);
+                  break;
+                case 2:
+                  text = const Text('M', style: style);
+                  break;
+                case 3:
+                  text = const Text('T', style: style);
+                  break;
+                case 4:
+                  text = const Text('W', style: style);
+                  break;
+                case 5:
+                  text = const Text('T', style: style);
+                  break;
+                case 6:
+                  text = const Text('F', style: style);
+                  break;
+                case 7:
+                  text = const Text('S', style: style);
+                  break;
+                default:
+                  text = const Text('', style: style);
+                  break;
+              }
+              return SideTitleWidget(
+                child: text,
+                space: 15,
+                meta: meta,
+              );
+            },
           ),
-          getTitles: (value) {
-            switch (value.toInt()) {
-              case 1:
-                return '10k';
-              case 3:
-                return '30k';
-              case 5:
-                return '50k';
-            }
-            return '';
-          },
-          reservedSize: 32,
-          margin: 12,
+        ),
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: false,
+            interval: 1,
+            reservedSize: 32,
+            getTitlesWidget: (double value, TitleMeta meta) {
+              const style = TextStyle(
+                color: Color(0xff67727d),
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              );
+              String text;
+              switch (value.toInt()) {
+                case 1:
+                  text = '10k';
+                  break;
+                case 3:
+                  text = '30k';
+                  break;
+                case 5:
+                  text = '50k';
+                  break;
+                default:
+                  text = '';
+                  break;
+              }
+              return SideTitleWidget(
+                child: Text(text, style: style),
+                space: 12,
+                meta: meta,
+              );
+            },
+          ),
         ),
       ),
       borderData: FlBorderData(
@@ -329,22 +361,22 @@ class _StatsState extends State<Stats> {
             const FlSpot(9, 3),
           ],
           isCurved: true,
-          colors: gradientColors,
+          color: gradientColors.first,
           barWidth: 2.5,
           isStrokeCapRound: true,
           dotData: const FlDotData(
             show: false,
           ),
           belowBarData: BarAreaData(
-            //applyCutOffY: true,
-            //cutOffY: 100,
-            gradientFrom: const Offset(100, 10),
-            gradientTo: const Offset(100, 100),
             show: true,
-            colors: [
-              Repository.selectedItemColor(context).withOpacity(0.05),
-              Repository.selectedItemColor(context),
-            ],
+            gradient: LinearGradient(
+              colors: [
+                Repository.selectedItemColor(context).withOpacity(0.05),
+                Repository.selectedItemColor(context),
+              ],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+            ),
           ),
         ),
       ],
